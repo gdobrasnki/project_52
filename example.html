@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    {{mymap.js}}
+    {{sndmap.js}}
+</head>
+<body>
+    <h1>Mockup Help Next Door </h1>
+
+
+    <h3> Example Of people in need</h3>
+    {{sndmap.html}}
+
+
+
+    <form method="POST" acion="">
+        <div class="main-container">
+            <section class="fullwidth-split">
+                <div class="container-fluid">
+                    <div class="row no-gutters height-100">
+                        <div class="col-12 col-sm-7 col-lg-6 order-sm-1 fullwidth-split-text bg-dark text-light">
+
+                            <div class="col-11 col-lg-9 align-self-center">
+
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="age">If you are in need of Assistance. PLease Fill out the following Details.</label>
+                                            <p></p>
+                                            {% if form.age.errors %}
+                                            {{ form.age(class_="form-control form-control-lg is-invalid", placeholder="age") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.firstname.age %}
+                                                <span> {{ error }} </span>
+                                                {% endfor %}
+                                            </div>
+                                            {% else %}
+                                            {{ form.age(class_="form-control form-control-lg", placeholder="age") }}
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="form-group">
+                                            {% if form.firstname.errors %}
+                                            {{ form.firstname(class_="form-control form-control-lg is-invalid", placeholder="First Name") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.firstname.errors %}
+                                                <span> {{ error }} </span>
+                                                {% endfor %}
+                                            </div>
+                                            {% else %}
+                                            {{ form.firstname(class_="form-control form-control-lg", placeholder="First Name") }}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <!--end of col-->
+
+                                    <div class="col-auto">
+                                        <div class="form-group">
+                                            {% if form.lastname.errors %}
+                                            {{ form.lastname(class_="form-control form-control-lg is-invalid", placeholder="Last Name") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.lastname.errors %}
+                                                <span> {{ error }} </span>
+                                                {% endfor %}
+                                            </div>
+                                            {% else %}
+                                            {{ form.lastname(class_="form-control form-control-lg", placeholder="Last Name") }}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <!--end of col-->
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            {% if form.sex.errors %}
+                                            {{ form.sex(class_="form-control form-control-lg is-invalid", placeholder="sex") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.sex.errors %}
+                                                <span> {{ error }} </span>
+                                                {% endfor %}
+                                            </div>
+                                            {% else %}
+                                            {{ form.sex(class_="form-control form-control-lg", placeholder="sex") }}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <!--end of col-->
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            {% if form.needs.errors %}
+                                            {{ form.needs(class_="form-control form-control-lg is-invalid", placeholder="needs") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.needs.errors %}
+                                                <span> {{ error }} </span>
+                                                {% endfor %}
+                                            </div>
+                                            {% else %}
+                                            {{ form.needs(class_="form-control form-control-lg", placeholder="needs") }}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <!--end of col-->
+
+                                    <div class="col-auto">
+                                        <div class="form-group">
+                                            {% if form.wants.errors %}
+                                            {{ form.wants(class_="form-control form-control-lg is-invalid", placeholder="wants") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.wants.errors %}
+                                                <span> {{ error }} </span>
+                                                {% endfor %}
+                                            </div>
+                                            {% else %}
+                                            {{ form.wants(class_="form-control form-control-lg", placeholder="wants") }}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <!--end of col-->
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group">
+
+                                            {% if form.phonenumber.errors %}
+                                            {{ form.phonenumber(class_="form-control form-control-lg is-invalid", placeholder="phonenumber") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.phonenumber.errors %}
+                                                <span> {{ error }} </span>
+                                                {% endfor %}
+                                            </div>
+                                            {% else %}
+                                            {{ form.phonenumber(class_="form-control form-control-lg", placeholder="phonenumber") }}
+                                            {% endif %}
+                                            <small>* We will never share your Phone Number</small>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        {% if form.postal.errors %}
+                                        {{ form.postal(class_="form-control form-control-lg is-invalid", placeholder="postal") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.postal.errors %}
+                                            <span> {{ error }} </span>
+                                            {% endfor %}
+                                        </div>
+                                        {% else %}
+                                        {{ form.postal(class_="form-control form-control-lg", placeholder="postal") }}
+                                        {% endif %}
+                                        <small>* We will never share your postal code</small>
+                                    </div>
+                                </div>
+                                <!--end of col-->
+
+
+                            </div>
+                        </div>
+                        <!--end of col-->
+
+
+
+                    </div>
+                    <!--end of row-->
+                </div>
+            </section>
+            {{ form.submit(class="btn btn-lg btn-primary") }}
+        </div>
+
+    </form>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
