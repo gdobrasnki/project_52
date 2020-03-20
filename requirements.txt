@@ -11,6 +11,6 @@ packaging==16.8
 pyparsing==2.2.0
 six==1.10.0
 visitor==0.1.3
-Werkzeug==0.11.15
+Werkzeug==0.15.3
 WTForms==2.1
 flask-googlemaps==0.4.0
