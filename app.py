@@ -41,7 +41,7 @@ class NameForm(FlaskForm):
 
 
     
-@app.route("/hfn", methods = ['GET','POST'])
+@app.route("/", methods = ['GET','POST'])
 def mapview():
 
     food = get_items(FOOD)
@@ -166,68 +166,6 @@ def get_items(source):
     return sorted(items)
 
 
-
-
-
-# find the row that matches the id in the URL, retrieve name and photo
-def get_actor(source, id):
-    for row in source:
-        if id == str( row["id"] ):
-            name = row["name"]
-            photo = row["photo"]
-            # change number to string
-            id = str(id)
-            # return these if id is valid
-            return id, name, photo
-    # return these if id is not valid - not a great solution, but simple
-    return "Unknown", "Unknown", ""
-
-# find the row that matches the name in the form and retrieve matching id
-def get_id(source, name):
-    for row in source:
-        if name == row["name"]:
-            id = row["id"]
-            # change number to string
-            id = str(id)
-            # return id if name is valid
-            return id
-    # return these if id is not valid - not a great solution, but simple
-    return "Unknown"
-
-# all Flask routes below
-
-# two decorators using the same function
-@app.route('/', methods=['GET', 'POST'])
-@app.route('/index.html', methods=['GET', 'POST'])
-def index():
-    names = get_names(ACTORS)
-    # you must tell the variable 'form' what you named the class, above
-    # 'form' is the variable name used in this template: index.html
-    form = NameForm()
-    message = ""
-    if form.validate_on_submit():
-        name = form.name.data
-        if name in names:
-            # empty the form field
-            form.name.data = ""
-            id = get_id(ACTORS, name)
-            # redirect the browser to another route and template
-            return redirect( url_for('actor', id=id) )
-        else:
-            message = "That actor is not in our database."
-    return render_template('index.html', names=names, form=form, message=message)
-
-
-@app.route('/actor/<id>')
-def actor(id):
-    # run function to get actor data based on the id in the path
-    id, name, photo = get_actor(ACTORS, id)
-    if name == "Unknown":
-        # redirect the browser to the error template 
-        return render_template('404.html'), 404
-    else:
-        # pass all the data for the selected actor to the template
-        return render_template('actor.html', id=id, name=name, photo=photo)
 
 
 # routes to handle errors - they have templates too
