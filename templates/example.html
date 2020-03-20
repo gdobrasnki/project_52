@@ -1,0 +1,186 @@
+﻿
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CovidAssist</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <meta charset="utf-8">
+    <title>Slideout Demo</title>
+    <meta http-equiv="cleartype" content="on">
+    <meta name="MobileOptimized" content="320">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .slideout-menu {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            z-index: 0;
+            width: 256px;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
+            display: none;
+        }
+
+        .slideout-panel {
+            position: relative;
+            z-index: 1;
+            will-change: transform;
+        }
+
+        .slideout-open,
+        .slideout-open body,
+        .slideout-open .slideout-panel {
+            overflow: hidden;
+        }
+
+            .slideout-open .slideout-menu {
+                display: block;
+            }
+    </style>
+    {{sndmap.js}}
+</head>
+<body>
+
+    <nav id="menu">
+        <h2>Menu</h2>
+
+
+        <!-- Call to Action -->
+        <div class="row">
+            <!-- Need Help -->
+            <div class="col-4">
+                <div class="card text-white bg-primary my-5 text-center">
+                    <div class="card-body">
+                        <p class="text-white m-0">I Need Assistance</p>
+                    </div>
+                </div>
+
+                <div class="quick-home-order">
+                    <form>
+                        <div class="form-group">
+                            <label for="homeOrderTel">Telephone</label>
+                            <input type="tel" class="form-control" id="homeOrderTel" placeholder="ex. 555-555-1234">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="homeOrderTel">Postal Code</label>
+                            <input type="text" class="form-control" id="homeOrderPostal" placeholder="90210">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="homeOrderUrgency">By When Do You Need It?</label>
+                            <select class="form-control" id="homeOrderUrgency">
+                                <option>Today</option>
+                                <option>Tomorrow</option>
+                                <option>>6 Hours</option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="homeOrderNeeds">What I Need:</label>
+
+                            {%for list in listoflists %}
+                            <h1>
+                                ********************************
+                            </h1>
+                            {% for item in list %}
+                            <div class="col-md-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id={{item
+                                }}>
+                                    <label class="form-check-label" for="homeOrderNeedFood">
+                                        {{item}}
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% endfor %}
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </nav>
+
+    <main id="panel">
+        <header>
+            <button class="toggle-button">Open\Close</button>
+            <div class="card text-white bg-primary my-5 text-center">
+                <div class="card-body">
+                    <p class="text-white m-0">I Need Assistance</p>
+                </div>
+            </div>
+
+
+            <h1>Mockup Help Next Door 2</h1>
+            <h3> Example Of people in need</h3>
+            {{sndmap.html}}
+
+        </header>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
+    <script>
+        var slideout = new Slideout({
+            'panel': document.getElementById('panel'),
+            'menu': document.getElementById('menu'),
+            'padding': 256,
+            'tolerance': 70
+        });
+
+        // Toggle button
+        document.querySelector('.toggle-button').addEventListener('click', function () {
+            slideout.toggle();
+        });
+    </script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
+</body>
+</html>
