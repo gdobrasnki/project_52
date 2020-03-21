@@ -12,7 +12,14 @@ Thumbs.db
 
 # folders to be ignored
 env/
+venv
 __pycache__/
 
 # Excel files
 *.xlsx
+
+# IntelliJ
+.idea
+
+# VSCode
+.vscode
