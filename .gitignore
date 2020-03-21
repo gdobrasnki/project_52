@@ -23,3 +23,25 @@ __pycache__/
 
 # VSCode
 .vscode
+
+
+# Virtualenv
+# http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
+.Python
+[Bb]in
+[Ii]nclude
+[Ll]ib
+[Ll]ib64
+[Ll]ocal
+[Ss]cripts
+pyvenv.cfg
+.venv
+pip-selfcheck.json
+
+#Ignore env file
+venv/
+.vscode/
+.vs
+paxis/__pychace__
+companies/__pychace__
+cwapi/__pychace__
