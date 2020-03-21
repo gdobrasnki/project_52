@@ -42,6 +42,4 @@ pip-selfcheck.json
 venv/
 .vscode/
 .vs
-paxis/__pychace__
-companies/__pychace__
-cwapi/__pychace__
+
