@@ -24,4 +24,7 @@ build-local:
 
 smoke-test-local:
 	@echo "=== smoke testing local ==="
+	@docker ps
+	@sleep 10
+	@docker ps
 	curl -I 0.0.0.0:5000

@@ -12,8 +12,3 @@ services:
         - POSTGRES_USER=postgres
         - POSTGRES_PASSWORD=geoserver
         - POSTGRES_DB=geoserver
-  wait-for-dep:
-    image: dadarek/wait-for-dependencies
-    depends_on:
-      - web
-    command: web:5000
