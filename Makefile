@@ -24,4 +24,5 @@ build-local:
 
 smoke-test-local:
 	@echo "=== smoke testing local ==="
+	@sleep 3
 	curl -I 0.0.0.0:5000
