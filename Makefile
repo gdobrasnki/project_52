@@ -21,9 +21,7 @@ unit-test:
 build-local:
 	@echo "=== Build Local ==="
 	@docker-compose up -d
-	@docker ps
 
 smoke-test-local:
 	@echo "=== smoke testing local ==="
-	@docker ps
-	curl -I http://localhost:5000
+	curl -I 0.0.0.0:5000
