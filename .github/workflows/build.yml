@@ -1,0 +1,27 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - 
+        name: checkout
+        uses: actions/checkout@master
+      - 
+        name: setup python
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.7'
+      -
+        name: dependencies
+        run: make deps
+      -  
+        name: test
+        run: make test

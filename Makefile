@@ -1,27 +1,27 @@
 PYTHON_FILES = $(shell find . -name \*.py)
+PROJECT_DIR='helpnextdoor'
 
-local: deps lint unit-test build-local smoke-test-local
-all: local
 default: local
+deps: pip
+test: lint unit-test build-local smoke-test-local
+local: deps test 
 
-deps:
-	@echo "=== dependencies ==="
-	@pip install --upgrade pip
+pip:
+	@echo "=== Installing Python dependencies ==="
 	@pip install -r requirements.txt
 
 lint:
-	@echo "=== linting ==="
+	@echo "=== Python Linting ==="
 	@pylint -E $(PYTHON_FILES)
 
 unit-test:
-	@echo "=== unit testing ==="
+	@echo "=== Python Unit Testing ==="
 	# TODO @pytest
 
 build-local:
-	@echo "=== build local ==="
-	# TODO @docker-compose up -d
+	@echo "=== Build Local ==="
+	@docker-compose up -d
 
 smoke-test-local:
 	@echo "=== smoke testing local ==="
-	# TODO curl http://localhost:5000
-
+	curl -I http://localhost:5000
