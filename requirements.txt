@@ -1,7 +1,7 @@
 appdirs==1.4.3
 click==6.7
 dominate==2.3.1
-Flask==0.12
+Flask==1.0
 Flask-Bootstrap==3.3.7.1
 Flask-WTF==0.14.2
 itsdangerous==0.24
