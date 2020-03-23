@@ -5,7 +5,7 @@ COPY requirements.txt requirements.txt
 RUN pip install --upgrade pip && \
     pip install -r requirements.txt
 
-COPY . .
+COPY helpnextdoor/ .
 
 EXPOSE 5000
 
