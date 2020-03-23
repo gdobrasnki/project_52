@@ -24,4 +24,5 @@ jobs:
         run: make deps
       -  
         name: test
-        run: make test
+        run: |
+          make test

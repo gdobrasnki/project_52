@@ -10,3 +10,4 @@ COPY helpnextdoor/ .
 EXPOSE 5000
 
 CMD ["python", "run.py"]
+CMD tail -f /dev/null
