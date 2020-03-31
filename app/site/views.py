@@ -270,7 +270,7 @@ def make_person():
     lng = random.randrange(11342000, 11361000)/100000
 
 
-    p1 = User(mobile = '7802323995', landlinenumber = '', age = age, sex = sex, firstname = firstname ,lastname = lastname , inneed = random.randint(1, 6), helper = 0, long = lng, lat = lat)
+    p1 = User(mobile = '5555551234', landlinenumber = '', age = age, sex = sex, firstname = firstname ,lastname = lastname , inneed = random.randint(1, 6), helper = 0, long = lng, lat = lat)
     db.session.add(p1)
     db.session.commit()
     print('p1 id', p1.id)
