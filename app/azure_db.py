@@ -14,7 +14,7 @@ class azure_db:
         load_dotenv(os.path.join(BASEDIR, '.env'))
         USER_NAME = os.getenv('USER_NAME')
         PASSWORD = os.getenv('PASSWORD')
-        PORT = os.getenv('PORT')
+        PORT = os.getenv('DBPORT')
         AZURE_SERVER = os.getenv('AZURE_SERVER')
         AZURE_SERVER_SHORT = os.getenv('AZURE_SERVER_SHORT')
         DATABASE = os.getenv('DATABASE')
