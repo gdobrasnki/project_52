@@ -23,9 +23,11 @@ import pandas as pd
 
 from app.twilio_verify import request_verification_token, check_verification_token
 
-from app.forms import Confirm2faForm, TwoFactorForm
+from app.forms import Confirm2faForm, TwoFactorForm, AskForAssistance
 
 from twilio.rest import Client
+
+import requests
 
 
 a_db = azure_db()
@@ -61,6 +63,7 @@ def mapview():
     markers2 = []
     
     
+
     #Get list from Azure
 
     sql = 'select * from dbo.[user]'
@@ -68,11 +71,57 @@ def mapview():
 	
     print(sql)
     data = pd.read_sql(sql, engine)
-    print(data)
+    #print(data)
+
+    #Forms
+    #Grab list of items needed
+
+    form = AskForAssistance()
+    print(form.submit.data, form.validate())
+
+    print('form val sub', form.validate_on_submit())
+#    if form.validate_on_submit():
+    if form.submit.data:
+        print('submited')
+
+        geodata = ConvertPostalLatLong(form.postal.data)
+        print('postal dict ', geodata)
+        age = random.randint(55, 95)
+        sex = random.choice(SEX)
+        needs = random.choice(FOOD)
+        wants = random.choice(WANTS)
+        print('needwants ', needs,wants)
+        if sex == 'Male':
+            firstname =random.choice(FNM)
+        else:
+            firstname =random.choice(FNF)
+        lastname = random.choice(LN)
+
+
+        fn = firstname
+        ln=lastname 
+
+
+        mobile=form.phone.data
+        landline=''
+        lat=geodata['lat']
+        lng=geodata['lng']
+        inneed=random.randint(0, 5)
+
+        helper=0
+
+
+        print('person ',personfromform(fn,ln,age,sex,needs,wants,mobile,landline,lat,lng,inneed,helper))
+
+
+
+
+
+
 
     for index,row in data.iterrows():
-        print(row)
-        print(row['lat'])
+        #print(row)
+        #print(row['lat'])
 
         lat = float(row['lat'])
         lng = float(row['long'])
@@ -95,7 +144,7 @@ def mapview():
             {
                 "icon": "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
                 "lat": lat,
-                "lng": -lng,
+                "lng": lng,
                 "infobox": person,
             }
         )
@@ -108,9 +157,14 @@ def mapview():
         markers=markers2
     )
 
+    #print('list o list ', listoflist)
+    #for item in listoflist:
+        #print(item)
+
     return render_template("example.html",
                             mymap=mymap,
                             sndmap=sndmap,
+                            form = form,
                             listoflist=listoflist)
 
 
@@ -134,8 +188,11 @@ def seeperson4(page):
     message = "You have commited to helping " + user.firstname + ". A "+str(user.age) + " year old " + user.sex+ ". You are making a promise that you can get to them in the next 4 hours. They need " +needs+ " and want " + wants + ". Please enter your mobile number as we will use it to verify you and send you the contact info of the User."
 
 
-    form = TwoFactorForm()
 
+
+
+
+    form = TwoFactorForm()
     
     if form.validate_on_submit():
         #flash('2fa requested for phone {}'.format(form.phone.data))
@@ -186,6 +243,7 @@ def seeperson8(page):
     form = TwoFactorForm()
 
     
+
     if form.validate_on_submit():
         #flash('2fa requested for phone {}'.format(form.phone.data))
         
@@ -211,6 +269,12 @@ def seeperson8(page):
 
 
 
+
+
+
+
+
+
 @www.route("/makeppl", methods=["GET", "POST"])
 def makeppl():
     print('mapview')
@@ -229,12 +293,13 @@ def makeppl():
     for _ in range(1, 19):
         lat = random.randrange(5346000, 5363000)/100000
         lng = random.randrange(11342000, 11361000)/100000
+        lng = -lng
 
         markers2.append(
             {
                 "icon": "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
                 "lat": lat,
-                "lng": -lng,
+                "lng": lng,
                 "infobox": make_person(),
             }
         )
@@ -283,6 +348,13 @@ def createsome():
 
     return 'created :'
 
+
+def personfromform(fn,ln,age,sex,needs,wants,mobile,landline,lat,lng,inneed,helper):
+    p1 = User(mobile = mobile, landlinenumber = landline, age = age, sex = sex, firstname = fn ,lastname = ln , inneed = inneed, helper = helper, long = lng, lat = lat)
+    db.session.add(p1)
+    db.session.commit()
+    print('p1 id', p1.id)
+    return 'done'
 
 
 
@@ -418,4 +490,36 @@ def verifyandcommit():
 
     return "Thank you. You have commited and will Recieve the contact info of the Person in need shortly"
 
+
+
+
+#more utils
+def ConvertPostalLatLong(postal):
+
+
+    GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json'
+
+    params = {
+    #    'address': '221B Baker Street, London, United Kingdom',
+    #    'sensor': 'false',
+    #    'region': 'uk',
+        'key': app.config['GAPI'],
+        'components':'postal_code:' + postal
+    }
+
+    #    'components':'country:GB|postal_code:CH21EU'
+
+
+    # Do the request and get the response data
+    req = requests.get(GOOGLE_MAPS_API_URL, params=params)
+    res = req.json()
+
+    # Use the first result
+    result = res['results'][0]
+
+    geodata = dict()
+    geodata['lat'] = result['geometry']['location']['lat']
+    geodata['lng'] = result['geometry']['location']['lng']
+    print('(lat, lng) = ({lat}, {lng})'.format(**geodata))
+    return geodata
 

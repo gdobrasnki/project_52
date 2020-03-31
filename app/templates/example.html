@@ -1,4 +1,4 @@
-
+﻿
 
 <!doctype html>
 <html lang="en">
@@ -19,6 +19,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <style>
+
         body {
             width: 100%;
             height: 100%;
@@ -72,57 +73,77 @@
                 </div>
 
                 <div class="quick-home-order">
-                    <form>
+                    <form action="" method="post" novalidate>
                         <div class="form-group">
-                            <label for="homeOrderTel">Telephone</label>
-                            <input type="tel" class="form-control" id="homeOrderTel" placeholder="ex. 555-555-1234">
+
+                            <p>
+                                {{ form.phone.label }}<br>
+                                {{ form.phone(class="form-control", size=20) }}<br>
+                                {% for error in form.phone.errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %}
+                            </p>
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <p>
+                                {{ form.postal.label }}<br>
+                                {{ form.postal(class="form-control", size=10) }}<br>
+                                {% for error in form.postal.errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %}
+                            </p>
+
+
                         </div>
 
                         <div class="form-group">
-                            <label for="homeOrderTel">Postal Code</label>
-                            <input type="text" class="form-control" id="homeOrderPostal" placeholder="90210">
+
+                            <p>
+                                {{ form.time.label }}<br>
+                                {{ form.time(class="form-control") }}<br>
+                                {% for error in form.time.errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %}
+                            </p>
                         </div>
 
-                        <div class="form-group">
-                            <label for="homeOrderUrgency">By When Do You Need It?</label>
-                            <select class="form-control" id="homeOrderUrgency">
-                                <option>Today</option>
-                                <option>Tomorrow</option>
-                                <option>>6 Hours</option>
-                            </select>
-                        </div>
+
+
+
 
 
                         <div class="form-group">
                             <label for="homeOrderNeeds">What I Need:</label>
 
-                            {%for list in listoflists %}
-                            <h1>
-                                ********************************
-                            </h1>
-                            {% for item in list %}
-                            <div class="col-md-10">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id={{item
-                                }}>
-                                    <label class="form-check-label" for="homeOrderNeedFood">
-                                        {{item}}
-                                    </label>
-                                </div>
+                            {%for item in listoflist %}
 
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id={{item}}>
+                                <label class="form-check-label" for="homeOrderNeedFood">
+                                    {{item}}
+                                </label>
+                            </div>
+                            {% endfor %}
+
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <p>{{ form.submit(class="btn btn-primary") }}</p>
                             </div>
                         </div>
-                        {% endfor %}
-                        {% endfor %}
+
+
+
+
+                    </form>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-10">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </div>
-                </form>
             </div>
-        </div>
 
 
 
@@ -180,7 +201,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
-    
+
 
 
 
