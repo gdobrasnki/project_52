@@ -197,8 +197,8 @@ def seeperson4(page):
     if form.validate_on_submit():
         #flash('2fa requested for phone {}'.format(form.phone.data))
         
-
-        session['mobile'] = "+1" + str(form.phone.data)
+        #NA only 
+        session['mobile'] = "+" + str(form.phone.data)
         session['UserInNeed'] = user.id  
 
         request_verification_token(session['mobile'])
