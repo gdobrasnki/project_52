@@ -1,0 +1,25 @@
+
+<div class="main-container">
+    <section class="space-sm">
+        <div class="container align-self-start">
+
+            <h1>2fa verify</h1>
+            <p>Please enter the token that was sent to your phone.</p>
+            <form action="" method="post" novalidate>
+                {{ form.hidden_tag() }}
+                <p>
+                    {{ form.token.label }}
+                    {{ form.token(size=32) }}<br>
+                    {% for error in form.token.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+                <p>{{ form.submit(class="btn btn-lg btn-primary") }}</p>
+            </form>
+
+
+        </div>
+        <!--end of container-->
+    </section>
+    <!--end of section-->
+</div>

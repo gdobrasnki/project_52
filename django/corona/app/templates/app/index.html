@@ -1,0 +1,138 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block Body %}
+{% for message in messages %}
+<div style='color:black' class="alert {{ message.tags }} alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message }}
+</div>
+{% endfor %}
+<div id='map' class='map' style='height: 100vh;width: 100vw;'></div>
+<div id="popup" class="ol-popup">
+    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+    <div id="popup-content"></div>
+</div>
+<!-- Button to Open the Modal -->
+<button type="button" class="btn btn-primary add-btn " data-toggle="modal" data-target="#infoModal">
+    <i class="fa fa-plus fa-4x" aria-hidden="true"></i>
+</button>
+{% comment %} information modal start{% endcomment %}
+<!-- The Modal -->
+<div class="modal fade" id="infoModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Add info</h4>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                <form method="post" id='newLoca'>
+
+                    {% csrf_token %}
+
+                    <!-- {{ form|crispy }} -->
+                    <div id="div_id_name" class="form-group"> <label for="id_name" class=" requiredField">
+                            Name<span class="asteriskField">*</span> </label>
+                        <div class=""> <input type="text" name="name" placeholder="Name Please "
+                                class="textinput textInput form-control" required="" id="id_name"> </div>
+                    </div>
+                    <div id="div_id_telephone" class="form-group"> <label for="id_telephone" class=" requiredField">
+                            Phone No. (add Country Code)<span class="asteriskField">*</span> </label>
+                        <div class=""> <input type="text" name="telephone" placeholder="+120XXXXXXXX"
+                                class="textinput textInput form-control" required="" id="id_telephone"> </div>
+                    </div>
+                    <div id="div_id_address" class="form-group"> <label for="id_address" class=" requiredField">
+                            Address<span class="asteriskField">*</span> </label>
+                        <div class=""> <input type="text" name="address" placeholder="13 MG Road, Nashik "
+                                class="textinput textInput form-control" required="" id="id_address"> </div>
+                    </div>
+
+                    <div id="div_id_condition" class="form-group"> <label for="id_condition" class=" requiredField">
+                            Condition<span class="asteriskField">*</span> </label>
+                        <div class=""> <select name="condition" class="select form-control" id="id_condition">
+                                <option value="Severe" selected>Severe</option>
+                                <option value="Isolated">Isolated</option>
+                                <option value="Negative">Negative</option>
+                                <option value="Curious">Curious</option>
+
+                            </select> </div>
+                    </div>
+                    <div id="div_id_age" class="form-group"> <label for="id_age" class=" requiredField">
+                            Age<span class="asteriskField">*</span> </label>
+                        <div class=""> <input type="number" name="age" class="numberinput form-control" required=""
+                                id="id_age">
+                        </div>
+                    </div>
+                    <div id="div_id_sex" class="form-group"> <label for="id_sex" class=" requiredField">
+                            Sex<span class="asteriskField">*</span> </label>
+                        <div class=""> <select name="sex" class="select form-control" id="id_sex">
+                                <option value="Male" selected>Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+
+                            </select> </div>
+                    </div>
+
+
+
+                    <div id="div_id_food_need" class="form-group"> <label for="id_food_need" class="">
+                            Food need
+                        </label>
+                        <div class=""> <input type="text" name="food_need" maxlength="500"
+                                class="textinput textInput form-control" id="id_food_need"> </div>
+                    </div>
+                    <div id="div_id_hygine_need" class="form-group"> <label for="id_hygine_need" class="">
+                            Hygine need
+                        </label>
+                        <div class=""> <input type="text" name="hygine_need" maxlength="500"
+                                class="textinput textInput form-control" id="id_hygine_need"> </div>
+                    </div>
+                    <div id="div_id_other_need" class="form-group"> <label for="id_other_need" class="">
+                            Other need
+                        </label>
+                        <div class=""> <input type="text" name="other_need" maxlength="500"
+                                class="textinput textInput form-control" id="id_other_need"> </div>
+                    </div>
+                    <div style='display:none'>
+                        <div id="div_id_x" class="form-group"> <label for="id_x" class=" requiredField">
+                                X<span class="asteriskField">*</span> </label>
+                            <div class=""> <input type="number" name="x" step="any"
+                                    class="numberinput form-control is-invalid" required="" id="id_x"></div>
+                        </div>
+                        <div id="div_id_y" class="form-group"> <label for="id_y" class=" requiredField">
+                                Y<span class="asteriskField">*</span> </label>
+                            <div class=""> <input type="number" name="y" step="any" class="numberinput form-control"
+                                    required="" id="id_y"> </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal"
+                    onclick="submitForm()">Submit</button>
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+<!-- JS custome tags -->
+<script src="{% static 'custom/js/main.js' %}"></script>
+
+{% endblock %}

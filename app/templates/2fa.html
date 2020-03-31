@@ -1,0 +1,25 @@
+
+<div class="main-container">
+    <section class="space-sm">
+        <div class="container align-self-start">
+
+            <h1>Commiting</h1>
+            <p>{{Message}}</p>
+            <form action="" method="post" novalidate>
+                {{ form.hidden_tag() }}
+                <p>
+                    {{ form.phone.label }}<br>
+                    {{ form.phone(size=32) }}<br>
+                    {% for error in form.phone.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+                <p>{{ form.submit() }}</p>
+            </form>
+
+
+        </div>
+        <!--end of container-->
+    </section>
+    <!--end of section-->
+</div>

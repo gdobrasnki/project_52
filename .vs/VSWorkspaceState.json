@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\templates"
+    "\\django",
+    "\\django\\corona",
+    "\\django\\corona\\app\\static",
+    "\\django\\corona\\corona"
   ],
-  "SelectedNode": "\\app.py",
+  "SelectedNode": "\\django\\corona\\manage.py",
   "PreviewInSolutionExplorer": false
 }
