@@ -48,39 +48,15 @@ www = Blueprint("site", __name__)
 
 @www.route("/", methods=["GET", "POST"])
 def mapview():
-    print('mapview')
-    food = get_items(FOOD)
-    hygiene = get_items(HYGIENE)
-    listoflist = [*food, *hygiene]
-
-    mymap = Map(
-        identifier="view-side",
-        lat=53.5461,
-        lng=-113.4938,
-        markers=[(53.5461, -113.4938)]
-    )
-
-    markers2 = []
-    
-    
-
-    #Get list from Azure
-
-    sql = 'select * from dbo.[user]'
-    engine = create_engine("mssql+pyodbc:///?odbc_connect=%s" % params)
-	
-    print(sql)
-    data = pd.read_sql(sql, engine)
-    #print(data)
-
-    #Forms
-    #Grab list of items needed
 
     form = AskForAssistance()
     print(form.submit.data, form.validate())
 
     print('form val sub', form.validate_on_submit())
 #    if form.validate_on_submit():
+
+    
+    
     if form.submit.data:
         print('submited')
 
@@ -113,11 +89,34 @@ def mapview():
 
         print('person ',personfromform(fn,ln,age,sex,needs,wants,mobile,landline,lat,lng,inneed,helper))
 
+        redirect(url_for('site.mapview'))
+        #return render_template("example.html",
+        #                mymap=mymap,
+        #                sndmap=sndmap,
+        #                form = form,
+        #                listoflist=listoflist)
 
 
 
 
 
+
+
+
+
+
+    markers2 = []
+    
+    #Get list from Azure
+
+
+
+    sql = 'select * from dbo.[user]'
+    engine = create_engine("mssql+pyodbc:///?odbc_connect=%s" % params)
+	
+    print(sql)
+    data = pd.read_sql(sql, engine)
+    #print(data)
 
     for index,row in data.iterrows():
         #print(row)
@@ -149,11 +148,46 @@ def mapview():
             }
         )
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    print('mapview')
+    food = get_items(FOOD)
+    hygiene = get_items(HYGIENE)
+    listoflist = [*food, *hygiene]
+
+    mymap = Map(
+        identifier="view-side",
+        lat=53.5461,
+        lng=-113.4938,
+        markers=[(53.5461, -113.4938)]
+    )
+
+    
+    
+
+
+    #Forms
+    #Grab list of items needed
+
+
+
     sndmap = Map(
         identifier="sndmap",
         lat=53.5461,
         lng=-113.4938,
-        style="height:600px;width:100%;margin:0;",
+        style="height:800px;width:100%;margin:0;",
         markers=markers2
     )
 
@@ -161,11 +195,27 @@ def mapview():
     #for item in listoflist:
         #print(item)
 
+
+
+
+
+
+
+
+
     return render_template("example.html",
                             mymap=mymap,
                             sndmap=sndmap,
                             form = form,
                             listoflist=listoflist)
+
+
+
+
+
+
+
+
 
 
 
@@ -353,7 +403,10 @@ def personfromform(fn,ln,age,sex,needs,wants,mobile,landline,lat,lng,inneed,help
     p1 = User(mobile = mobile, landlinenumber = landline, age = age, sex = sex, firstname = fn ,lastname = ln , inneed = inneed, helper = helper, long = lng, lat = lat)
     db.session.add(p1)
     db.session.commit()
+
     print('p1 id', p1.id)
+    db.session.remove()
+
     return 'done'
 
 
