@@ -167,12 +167,12 @@ def mapview():
     hygiene = get_items(HYGIENE)
     listoflist = [*food, *hygiene]
 
-    mymap = Map(
-        identifier="view-side",
-        lat=53.5461,
-        lng=-113.4938,
-        markers=[(53.5461, -113.4938)]
-    )
+    #mymap = Map(
+    #    identifier="view-side",
+    #    lat=53.5461,
+    #    lng=-113.4938,
+    #    markers=[(53.5461, -113.4938)]
+    #)
 
     
     
@@ -187,6 +187,7 @@ def mapview():
         identifier="sndmap",
         lat=53.5461,
         lng=-113.4938,
+        zoom = 6,
         style="height:800px;width:100%;margin:0;",
         markers=markers2
     )
@@ -204,7 +205,7 @@ def mapview():
 
 
     return render_template("example.html",
-                            mymap=mymap,
+                            #mymap=mymap,
                             sndmap=sndmap,
                             form = form,
                             listoflist=listoflist)

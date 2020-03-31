@@ -7,8 +7,8 @@ from dotenv import load_dotenv
 
 class azure_db:
     def __init__(self):
-#        BASEDIR = os.path.abspath(os.path.dirname(__file__))
-#        load_dotenv(os.path.join(BASEDIR, '.env'))
+        #BASEDIR = os.path.abspath(os.path.dirname(__file__))
+        #load_dotenv(os.path.join(BASEDIR, '.env'))
 
 
 
