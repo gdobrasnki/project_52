@@ -2,6 +2,13 @@ from flask import current_app
 from app import app
 from twilio.rest import Client, TwilioException
 import requests
+import os
+
+
+TWILIO_ACCOUNT_SID= os.getenv('TWILIO_ACCOUNT_SID')
+TWILIO_AUTH_TOKEN= os.getenv('TWILIO_AUTH_TOKEN')
+TWILIO_VERIFY_SERVICE_ID= os.getenv('TWILIO_VERIFY_SERVICE_ID')
+
 
 
 
