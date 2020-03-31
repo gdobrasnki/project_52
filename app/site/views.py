@@ -343,7 +343,7 @@ def confirm_2fa():
 
             HelpNextDoorPhoneNumber = "+15877410102"
 
-            smsmsg = "Thank you. The individual you are assisting is " + user.firstname + ". Her Phone Number (Or Agency assisting) is " + user.mobile + " Please contact them directly to setup a Time and location for drop off. Thank you again for helping your Community."
+            smsmsg = "Thank you. The individual you are assisting is " + user.firstname + ". Their Phone Number (Or Agency assisting) is " + user.mobile + " Please contact them directly to setup a Time and location for drop off. Thank you again for helping your Community."
 
             tennant_twilio_account_sid = app.config['TWILIO_ACCOUNT_SID']
             tennant_twilio_auth_token = app.config['TWILIO_AUTH_TOKEN']

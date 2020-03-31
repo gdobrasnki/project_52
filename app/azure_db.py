@@ -7,17 +7,29 @@ from dotenv import load_dotenv
 
 class azure_db:
     def __init__(self):
-        BASEDIR = os.path.abspath(os.path.dirname(__file__))
-        print(BASEDIR)
+        #BASEDIR = os.path.abspath(os.path.dirname(__file__))
+        #print(BASEDIR)
 
         # Connect the path with your '.env' file name
-        load_dotenv(os.path.join(BASEDIR, '.env'))
+        #load_dotenv(os.path.join(BASEDIR, '.env'))
+
+
+
+
         USER_NAME = os.getenv('USER_NAME')
-        PASSWORD = os.getenv('PASSWORD')
+        AZPASSWORD = os.getenv('AZPASSWORD')
         PORT = os.getenv('DBPORT')
         AZURE_SERVER = os.getenv('AZURE_SERVER')
         AZURE_SERVER_SHORT = os.getenv('AZURE_SERVER_SHORT')
         DATABASE = os.getenv('DATABASE')
+        
+        
+        #USER_NAME = os.getenv('USER_NAME')
+        #PASSWORD = os.getenv('PASSWORD')
+        #PORT = os.getenv('DBPORT')
+        #AZURE_SERVER = os.getenv('AZURE_SERVER')
+        #AZURE_SERVER_SHORT = os.getenv('AZURE_SERVER_SHORT')
+        #DATABASE = os.getenv('DATABASE')
 
         #print(USER_NAME,PASSWORD,PORT,AZURE_SERVER,AZURE_SERVER_SHORT,DATABASE)
 
@@ -28,7 +40,7 @@ class azure_db:
         self.AzureServerShort = AZURE_SERVER_SHORT
         self.Db = DATABASE
         self.Username = USER_NAME
-        self.Pw = PASSWORD
+        self.Pw = AZPASSWORD
 
 
     def getConString(self,):

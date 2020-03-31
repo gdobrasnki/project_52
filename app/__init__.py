@@ -10,7 +10,6 @@ import urllib.parse
 
 #?
 import os
-
 from app.azure_db import azure_db
 
 
