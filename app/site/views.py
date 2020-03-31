@@ -166,9 +166,48 @@ def seeperson4(page):
 
 @www.route("/seeperson8/<page>", methods=["GET", "POST"])
 def seeperson8(page):
-    print('x 8')
-    print(page)
-    return "8 :" + str(page)
+    #Store the tenative commit
+    session['tenativeCommitId'] = page
+
+
+
+
+    #Get user ID again
+    #Tell user he is going to commit to this and get a verification token.
+    user = User.query.filter_by(id=page).first()
+    print(user.id,user.firstname)
+
+    needs = random.choice(FOOD)
+    wants = random.choice(WANTS)
+
+    message = "You have commited to helping " + user.firstname + ". A "+str(user.age) + " year old " + user.sex+ ". You are making a promise that you can get to them in the next 8 hours. They need " +needs+ " and want " + wants + ". Please enter your mobile number as we will use it to verify you and send you the contact info of the User."
+
+
+    form = TwoFactorForm()
+
+    
+    if form.validate_on_submit():
+        #flash('2fa requested for phone {}'.format(form.phone.data))
+        
+
+        session['mobile'] = "+1" + str(form.phone.data)
+        session['UserInNeed'] = user.id  
+
+        request_verification_token(session['mobile'])
+
+
+
+        return redirect(url_for('site.confirm_2fa'))
+
+    #    return redirect(url_for('index'))
+    return render_template('2fa.html',  title='2fa', form=form, Message = message)
+
+
+
+
+
+
+    return render_template('2fa.html',  title='2fa', form=form)
 
 
 
