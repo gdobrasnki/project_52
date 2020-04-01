@@ -430,7 +430,7 @@ def personfromform(fn,ln,age,sex,needs,wants,mobile,landline,lat,lng,inneed,help
 
 
 def make_person():
-    person = "<p>age:{}</p><p>sex:{}</p><p>needs:{}</p><p>wants:{}<p>"
+    person = "<p>TEST ONLY:</p><p>age:{}</p><p>sex:{}</p><p>needs:{}</p><p>wants:{}<p>"
     age = random.randint(55, 95)
     sex = random.choice(SEX)
     needs = random.choice(FOOD)
@@ -458,8 +458,8 @@ def make_person():
     print('p1 id', p1.id)
 
     person = person.format(age, sex, needs,wants)
-    person += '<a href="/seeperson4/'+str(p1.id)+'">I can help in 4 hours or less</a>'
-    person += '<div><a href="/seeperson8/'+str(p1.id)+'">I can help in 8 hours or less</a></div>'
+    person += '<a href="/seeperson4/'+str(p1.id)+'">TEST: I can help in 4 hours or less</a>'
+    person += '<div><a href="/seeperson8/'+str(p1.id)+'">TEST: I can help in 8 hours or less</a></div>'
 
     return person
 
@@ -525,7 +525,7 @@ def confirm_2fa():
 
             HelpNextDoorPhoneNumber = "+15877410102"
 
-            smsmsg = "Thank you. The individual you are assisting is " + user.firstname + ". Their Phone Number (Or Agency assisting) is " + user.mobile + " Please contact them directly to setup a Time and location for drop off. Thank you again for helping your Community."
+            smsmsg = "TEST ONLY: Thank you. The individual you are assisting is " + user.firstname + ". Their Phone Number (Or Agency assisting) is " + user.mobile + " Please contact them directly to setup a Time and location for drop off. Thank you again for helping your Community."
 
             tennant_twilio_account_sid = app.config['TWILIO_ACCOUNT_SID']
             tennant_twilio_auth_token = app.config['TWILIO_AUTH_TOKEN']
@@ -559,7 +559,7 @@ def confirm_2fa():
 @www.route('/verifyandcommit', methods=['GET', 'POST'])
 def verifyandcommit():
 
-    return "Thank you. You have commited and will Recieve the contact info of the Person in need shortly"
+    return "TEST ONLY:Thank you. You have commited and will Recieve the contact info of the Person in need shortly"
 
 
 
