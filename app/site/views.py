@@ -28,6 +28,9 @@ from app.forms import Confirm2faForm, TwoFactorForm, AskForAssistance
 from twilio.rest import Client
 
 import requests
+ 
+from flask import request
+
 
 
 a_db = azure_db()
@@ -48,6 +51,17 @@ www = Blueprint("site", __name__)
 
 @www.route("/", methods=["GET", "POST"])
 def mapview():
+
+    if request.method == 'POST':
+        userloc = request.get_json()
+        print('userloc',userloc)
+        for val in userloc:
+            print(val)
+
+
+
+
+
 
     form = AskForAssistance()
     print(form.submit.data, form.validate())
@@ -208,7 +222,10 @@ def mapview():
                             #mymap=mymap,
                             sndmap=sndmap,
                             form = form,
-                            listoflist=listoflist)
+                            listoflist=listoflist,
+                            
+                            gapi="https://maps.googleapis.com/maps/api/js?key="+app.config['GAPI']+"&callback=initMap"
+                            )
 
 
 
