@@ -52,11 +52,11 @@ www = Blueprint("site", __name__)
 @www.route("/", methods=["GET", "POST"])
 def mapview():
 
-    if request.method == 'POST':
-        userloc = request.get_json()
-        print('userloc',userloc)
-        for val in userloc:
-            print(val)
+    #if request.method == 'POST':
+    #    userloc = request.get_json()
+    #    print('userloc',userloc)
+    #    for val in userloc:
+    #        print(val)
 
 
 
