@@ -187,14 +187,6 @@
                 }
 
 
-                $.ajax({
-                    type: "POST",
-                    contentType: "application/json;charset=utf-8",
-                    url: "http://localhost:5000/",
-                    traditional: "true",
-                    data: JSON.stringify({ pos }),
-                    dataType: "json"
-                });
             }
 
             function handleLocationError(browserHasGeolocation, infoWindow, pos) {
