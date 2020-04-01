@@ -1,0 +1,175 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block Body %}
+{% load crispy_forms_tags %}
+
+<div class="container">
+    {% for message in messages %}
+    <div style='color:black' class="alert {{ message.tags }} alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{ message }}
+    </div>
+    {% endfor %}
+    <!-- Heading Row -->
+    <div class="row align-items-center my-5 no-mb">
+        <div class="col-lg-12">
+            <img class="img-fluid rounded mb-4 mb-lg-0" src="http://placehold.it/1280x300?text=Header+Image" alt="">
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+    <!-- Content Row -->
+    <div class="row my-5">
+        <h2 class="subheading">So you want to help?</h2>
+    </div>
+
+    <div class="row my-5">
+        <div class="col-md-5 mb-5">
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                                aria-expanded="true" aria-controls="collapseOne">
+                                I want to help deliver food.
+                            </button>
+                        </h2>
+                    </div>
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                        data-parent="#accordionExample">
+                        <div class="card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                            squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
+                            nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
+                            single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
+                            beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
+                            lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
+                            probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                I want to donate supplies.
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div class="card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                            squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
+                            nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
+                            single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
+                            beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
+                            lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
+                            probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                I want to something else.
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                        data-parent="#accordionExample">
+                        <div class="card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                            squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
+                            nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
+                            single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
+                            beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
+                            lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
+                            probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-md-5 -->
+
+        <div class="col-md-7 mb-5">
+            <div class="card">
+                <div class="card-body">
+                    <form method='POST' id='volunteerForm'>
+                        {% csrf_token %}
+
+                        {{ userForm|crispy }}
+                        {{ volunteringForm|crispy }}
+                        <div id="div_id_countryselect" class="form-group"> <label for="id_countryselet" class="">
+                                Country
+                            </label>
+                            <div class="">
+                                <select name="" id="id_countryselet">
+
+                                </select> </div>
+                        </div>
+                        <div class="form-group"> <label for="id_servicescanprovideselect" class=" requiredField">
+                                Services can provide<span class="asteriskField">*</span> </label>
+                            <div class="">
+                                <select name="service" id="id_servicescanprovideselect" multiple="multiple">
+                                    <optgroup label="Food Supply">
+                                        <option value="canned_good">Canned Goods</option>
+                                        <option value="dry_good">Dry Goods</option>
+                                        <option value="food_other">Other Goods</option>
+                                    </optgroup>
+                                    <optgroup label="Hygiene Supply">
+                                        <option value="toilet_paper">Toilet Paper</option>
+                                        <option value="female_prod">Female Sanitary Product</option>
+                                        <option value="toothepaste">Toothepaste</option>
+                                        <option value="hygiene_other">Other Hygiene Products</option>
+                                    </optgroup>
+                                    <optgroup label="Cleaning Supply">
+                                        <option value="toilet_paper">Toilet Paper</option>
+                                        <option value="female_prod">Female Sanitary Product</option>
+                                        <option value="toothepaste">Toothepaste</option>
+                                        <option value="hygiene_other">Other Hygiene Products</option>
+                                    </optgroup>
+                                    <optgroup label="Entertainment">
+                                        <option value="dvd">DVD</option>
+                                        <option value="Magazine">Magazine</option>
+                                        <option value="book">Books</option>
+                                        <option value="ent_other">Other Entertainment Products</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+                        {% comment %} <div style='display:none'>
+                            <input type="text" name="country" placeholder="India"
+                                class="textinput textInput form-control" id="id_country">
+                            <input type="text" name="servicescanprovide" maxlength="5000"
+                                class="textinput textInput form-control" required="" id="id_servicescanprovide">
+                            <input type="number" name="x" step="any" class="numberinput form-control" required=""
+                                id="id_x">
+                            <input type="number" name="y" step="any" class="numberinput form-control" required=""
+                                id="id_y">
+                        </div> {% endcomment %}
+                        <button onclick='creatvol()' class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-md-7 -->
+    </div>
+    <!-- /.row -->
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+
+<!-- JS custome tags -->
+<script src="{% static 'custom/js/volunteer.js' %}"></script>
+
+{% endblock %}

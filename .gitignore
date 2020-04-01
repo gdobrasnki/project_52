@@ -43,3 +43,5 @@ venv/
 .vscode/
 .vs
 
+#ENVIROMENTAL VARIABLES. DONT LET GET OUT TO NET.
+.env
