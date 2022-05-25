@@ -19,7 +19,7 @@ numpy==1.18.2
 packaging==16.8
 pandas==1.0.3
 psycopg2==2.8.4
-PyJWT==1.7.1
+PyJWT==2.4.0
 pyodbc==4.0.30
 pyparsing==2.2.0
 python-dateutil==2.8.1
