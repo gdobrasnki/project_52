@@ -15,7 +15,7 @@ idna==2.9
 itsdangerous==0.24
 Jinja2==2.9.5
 MarkupSafe==1.0
-numpy==1.18.2
+numpy==1.22.0
 packaging==16.8
 pandas==1.0.3
 psycopg2==2.8.4
